@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>カードリーダー接続テスト</title>
+	<script
+			  src="https://code.jquery.com/jquery-1.12.4.min.js"
+			  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+			  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+var ws;
+
+function connectSocketServer(callback) {
+    var support = "MozWebSocket" in window ? 'MozWebSocket' : ("WebSocket" in window ? 'WebSocket' : null);
+
+    if (support == null) {
+        return;
+    }
+    if( ws != null){
+        ws.close();
+    }
+
+    console.log("* Connecting to server ..");
+
+    // create a new websocket and connect
+    ws = new window[support]('wss://local.tekka-local.work/');
+
+    // when data is comming from the server, this metod is called
+    ws.onmessage = function (evt) {
+        var json = evt.data;
+
+        //console.log(json);
+
+        var data = JSON.parse(json);
+
+        if( data["command"] == "add_message_to_browser"){
+			
+			var message = "[" + data["time"] + "] 受信:" + data["message"];
+
+			add_message(message);
+
+        }
+        else if( data["command"] == "search_completed"){
+
+            var result = data["search_result_ary"];
+
+            var html = "";
+            for(var ii = 0; ii < result.length; ii++){
+                html = html + "<li>";
+                html = html + "<a target='_blank' href='";
+                html = html + result[ii]["href"];
+                html = html + "'>";
+                html = html + result[ii]["title"];
+                html = html + "</a>";
+                html = html + "</li>";
+            }
+            $("#_search_result").html(html);
+
+            console.log(result);
+        }
+    };
+
+    // when the connection is established, this method is called
+    ws.onopen = function () {
+        console.log('* Connection open');
+        if( typeof callback != "undefined" ){
+            callback("open");
+        }
+    };
+
+    // when the connection is closed, this method is called
+    ws.onclose = function () {
+        console.log('* Connection closed');
+        if( typeof callback != "undefined" ){
+            callback("close");
+        }
+    }
+}
+
+function disconnectWebSocket() {
+    if (ws) {
+        ws.close();
+    }
+    console.log("close");
+}
+
+function add_message(message){
+
+	$("#_message").append(message + "<br>");
+
+}
+
+function connect(){
+
+    $("#_signal_green").attr("src", "signal_green_off.png");
+    $("#_signal_red").attr("src", "signal_red_off.png");
+
+    connectSocketServer(function(state){
+
+        if( state == "open" ){
+            $("#_signal_green").attr("src", "signal_green_on.png");
+            $("#_signal_red").attr("src", "signal_red_off.png");
+
+            $("#_button_send").removeAttr("disabled");
+        }
+        else{
+            $("#_signal_green").attr("src", "signal_green_off.png");
+            $("#_signal_red").attr("src", "signal_red_on.png");
+
+            $("#_button_send").attr("disabled", "disabled");
+        }
+    });
+
+}
+
+function send_message(){
+
+	var message = $("#_message_send").val();
+	var time_str = get_time_str();
+
+	var send = {
+		"command":"add_message_to_app",
+		"message": message,
+		"time": time_str
+	};
+    
+    var send_str = JSON.stringify(send);
+    
+    ws.send(send_str);
+    
+	var self_msg = "[" + time_str + "] 送信:" + message;
+
+	add_message(self_msg);
+}
+
+function send_start_search(keyword){
+
+    var time_str = get_time_str();
+
+    var send = {
+        "command":"start_search",
+        "message": keyword,
+        "time": time_str
+    };
+
+    var send_str = JSON.stringify(send);
+
+    ws.send(send_str);
+
+    var self_msg = "[" + time_str + "] 検索開始:" + keyword;
+
+    add_message(self_msg);
+}
+
+
+function get_time_str(){
+
+	var now = new Date();
+	var y = now.getFullYear();
+	var m = padding_zero(now.getMonth() + 1, 2);
+	var d = padding_zero(now.getDate(), 2);
+	var h = padding_zero(now.getHours(), 2);
+	var i = padding_zero(now.getMinutes(), 2);
+	var s = padding_zero(now.getSeconds(), 2);
+
+	var ret = y + "/" + m + "/" + d + " " + h + ":" + i + ":" + s;
+
+	return ret;
+}
+
+function padding_zero(src, len){
+	return ("0" + src).slice(-len);
+}
+
+function start_search(){
+
+    var keyword = $("input[name='keyword']").val();
+
+    send_start_search(keyword);
+
+}
+
+$(document).ready(function(){
+	
+	connect();
+
+});
+
+</script>
+</head>
+<body>
+
+<div style="text-align: center;">
+    <div style="width:350px; margin:20px;display:inline-block; border: solid 2px black; border-radius: 10px; padding: 20px; text-align: left;">
+
+        <div>
+            <input type="text" name="keyword" style="width:80%;"/>
+            <input type="button" onclick="start_search();" value="検索"/>
+        </div>
+        <div>
+            <div>
+                検索結果：
+            </div>
+            <div>
+                <ul id="_search_result">
+                </ul>
+            </div>
+        </div>
+        <div style="margin:10px; margin-bottom: 0;text-align: right;">
+            <span style="font-size:12px;">
+    		アプリ接続：
+    		</span>
+			<img id="_signal_green" src="signal_green_off.png" style="width:18px;"
+				 onclick="connect();"/>
+			<img id="_signal_red" src="signal_red_on.png" style="width:18px; "
+				 onclick="connect();"/>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
