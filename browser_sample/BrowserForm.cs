@@ -88,7 +88,7 @@ namespace browser_sample
 
                             foreach(HtmlElement a_elm in elm3)
                             {
-                                if( !a_elm.InnerHtml.Contains("LC20lb"))
+                                if(a_elm.InnerHtml == null || !a_elm.InnerHtml.Contains("LC20lb"))
                                 {
                                     continue;
                                 }

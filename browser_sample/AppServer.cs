@@ -22,6 +22,7 @@ namespace ParallelHybridApp
 
         SuperWebSocket.WebSocketServer server_ssl;
 
+        private BrowserForm _browser_frm  = new BrowserForm();
 
 
         public AppServer()
@@ -56,6 +57,7 @@ namespace ParallelHybridApp
 
                 valid_cert();
 
+                _browser_frm.Show();
 
             }
             catch (Exception ex)
@@ -121,30 +123,28 @@ namespace ParallelHybridApp
                         break;
                     case "start_search":
 
+                        //検索開始
+
                         string keyword = recv.message;
 
                         frm.add_log(recv.time, "検索開始: " + keyword);
 
-                        BrowserForm brws_frm = new BrowserForm();
-
-                        brws_frm.keyword = keyword;
-                        brws_frm.on_search_complete = delegate ()
+                        frm._browser_frm.keyword = keyword;
+                        frm._browser_frm.on_search_complete = delegate ()
                         {
                             frm.add_log(recv.time, "検索終了: " + keyword);
 
-                            //TODO:メッセージ送信
+                            //検索結果送信
 
                             SearchCompleteData send = new SearchCompleteData();
 
-                            send.search_result_ary = brws_frm.search_result_ary;
+                            send.search_result_ary = frm._browser_frm.search_result_ary;
 
                             frm.send_message_complete_search(send);
 
-                            brws_frm.Close();
                         };
 
-                        brws_frm.Show();
-                        brws_frm.start();
+                        frm._browser_frm.start();
 
                         break;
                 }
