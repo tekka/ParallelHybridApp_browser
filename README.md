@@ -1,14 +1,14 @@
-ƒpƒ‰ƒŒƒ‹ƒnƒCƒuƒŠƒbƒhƒAƒvƒŠ ƒuƒ‰ƒEƒU˜AŒg
+ãƒ‘ãƒ©ãƒ¬ãƒ«ãƒã‚¤ãƒ–ãƒªãƒƒãƒ‰ã‚¢ãƒ—ãƒª ãƒ–ãƒ©ã‚¦ã‚¶é€£æº
 ===
 
-## ‚±‚ê‚Í‰½H
+## ã“ã‚Œã¯ä½•ï¼Ÿ
 
-ƒuƒ‰ƒEƒU‚ÅƒlƒCƒeƒBƒuƒAƒvƒŠ‚Ìƒuƒ‰ƒEƒU‚ÉÚ‘±‚µAƒXƒNƒŒƒCƒsƒ“ƒO‚ğs‚¢‚Ü‚·B
+ãƒ–ãƒ©ã‚¦ã‚¶ã§ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¢ãƒ—ãƒªã®ãƒ–ãƒ©ã‚¦ã‚¶ã«æ¥ç¶šã—ã€ã‚¹ã‚¯ãƒ¬ã‚¤ãƒ”ãƒ³ã‚°ã‚’è¡Œã„ã¾ã™ã€‚
 
 
-## ƒfƒ‚
+## ãƒ‡ãƒ¢
 
-1. [‚±‚¿‚ç](https://github.com/tekka/ParallelHybridApp_browser/raw/master/parallel_hybrid_app_native_browser.zip)‚ÌƒAƒvƒŠ‚ğƒ_ƒEƒ“ƒ[ƒh‚·‚éB
- ([ƒ\[ƒX‚Í‚±‚¿‚ç](https://github.com/tekka/ParallelHybridApp_browser/tree/master/native_app))
-2. ƒ_ƒEƒ“ƒ[ƒh‚µ‚½ƒAƒvƒŠ‚ğ—§‚¿ã‚°‚éB
-3. [‚±‚Ìƒy[ƒW](https://tekka.github.io/ParallelHybridApp_browser/)‚ğŠJ‚­B
+1. [ã“ã¡ã‚‰](https://github.com/tekka/ParallelHybridApp_browser/raw/master/parallel_hybrid_app_browser_native.zip)ã®ã‚¢ãƒ—ãƒªã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã€‚
+ ([ã‚½ãƒ¼ã‚¹ã¯ã“ã¡ã‚‰](https://github.com/tekka/ParallelHybridApp_browser/tree/master/native_app))
+2. ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚¢ãƒ—ãƒªã‚’ç«‹ã¡ä¸Šã’ã‚‹ã€‚
+3. [ã“ã®ãƒšãƒ¼ã‚¸](https://tekka.github.io/ParallelHybridApp_browser/)ã‚’é–‹ãã€‚
