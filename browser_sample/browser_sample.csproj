@@ -34,23 +34,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>dll\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.12\lib\net40\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>dll\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSocket.Common">
-      <HintPath>dll\SuperSocket.Common.dll</HintPath>
+    <Reference Include="SuperSocket.Common, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net40\SuperSocket.Common.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSocket.SocketBase">
-      <HintPath>dll\SuperSocket.SocketBase.dll</HintPath>
+    <Reference Include="SuperSocket.Facility, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net40\SuperSocket.Facility.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSocket.SocketEngine">
-      <HintPath>dll\SuperSocket.SocketEngine.dll</HintPath>
+    <Reference Include="SuperSocket.SocketBase, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net40\SuperSocket.SocketBase.dll</HintPath>
     </Reference>
-    <Reference Include="SuperWebSocket">
-      <HintPath>dll\SuperWebSocket.dll</HintPath>
+    <Reference Include="SuperSocket.WebSocket, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.WebSocket.1.6.6.1\lib\net40\SuperSocket.WebSocket.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>True</Private>
@@ -61,10 +61,7 @@
     <Reference Include="System.Core">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Threading">
-      <HintPath>dll\System.Threading.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <Private>True</Private>
     </Reference>
@@ -81,9 +78,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Forms">
@@ -125,6 +119,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
